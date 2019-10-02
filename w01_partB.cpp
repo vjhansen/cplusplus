@@ -19,7 +19,7 @@ using namespace std;
 int main() {
     
     int num1, num2 = 0;
-    string str, str2 = "";
+    string str = "";
     cout << "Enter two numbers with an operator between: "<< flush;
     getline(cin, str);
     
