@@ -8,6 +8,13 @@
  The answer to 10 + 15 is 25.
  Enter two numbers with an operator between> 10+15
  The answer to 10 + 15 is 25.
+ 
+ 
+ Error conditions must be handled. For example, entering an illegal operator or letters and not numbers.
+
+
+ 
+ 
  */
 
 #include <iostream>
