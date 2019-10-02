@@ -44,6 +44,8 @@ int main() {
     istringstream iss(str);
     iss >> num1 >> plus >> num2;
     
+ //use switch..case for -,/,*
+ 
     cout <<endl<< "The answer to " << num1 << '+' << num2 << " is " << num1 + num2<< endl;
     return 0;
 }
