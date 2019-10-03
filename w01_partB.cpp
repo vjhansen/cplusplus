@@ -37,7 +37,7 @@ int main() {
                 cout << "сука блять";
             }
             else
-                cout<<endl<< "The answer to " << num1 << op << num2 << " is " << num1/num2 << endl;
+                cout<<endl<< "The answer to " << num1 << op << num2 << " is " << (double) num1/num2 << endl;
             break;
         default:
             break;
