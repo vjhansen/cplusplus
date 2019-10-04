@@ -11,33 +11,59 @@
 #include <cmath>
 #include <algorithm>
 #include <iterator>
+#include <iomanip>
 using namespace std;
 
+
+
 int main(int argc, const char * argv[]) {
+    
     
     // define vector of size 3 for holding xyz-coordinates
     std::vector<int> v(3);
     v.clear();
     std::cout << "Enter numbers: ('Q' to quit)"<< std::endl;
-    
-int num;
-while (cin) {
-    std::cin >> num;
-    if (!cin) {
-        break;
+        
+    int num;
+    while (cin) {
+        std::cin >> num;
+        if (!cin) {
+            break;
+        }
+        v.push_back(num);
+        if (v.size() > 3) {
+            v.pop_back();  // use pop.back() to remove last item of vector
+        }
     }
-    v.push_back(num);
-    
-    if (v.size() > 3){
-        v.pop_back();  // use pop.back() to remove last item of vector
-    }
-}
-    
     std::cout << "you entered " << v.size() << endl;
-    
     for (int i =0; i<v.size(); i++) {
-        cout << v[i] << endl;
+        cout << v[i] <<", ";
     }
+    
+    
+    
+    
+    // vector of vectors [3 x 3]
+    /*vector<vector<int>> vv;
+    std::cout << "Enter numbers: ('Q' to quit)"<< std::endl;
+    int num;
+    
+    for (int i = 0; i < 3; i++) { // rows
+        vector<int> temp;
+        for (int j = 0; j < 3; j++) { // columns
+            temp.push_back(i);
+        }
+        vv.push_back(temp);
+    }
+    
+    for (int i = 0; i < vv.size(); i++) {
+        for (int j = 0; j < vv[i].size(); j++) {
+            cout << vv[i][j];
+        }
+        cout << endl;
+    }*/
+
+
     
     return 0;
 }
