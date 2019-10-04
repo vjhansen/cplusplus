@@ -8,7 +8,6 @@
  */
 
 #include <iostream>
-#include <string>
 
 class calculator {
     
@@ -17,7 +16,6 @@ public:
     char op1, op2;
     
     void input() {
-        std::string str = "";
         std::cout << "Enter numbers with operators between: " << std::flush;
         std::cin >> num1 >> op1 >> num2 >> op2 >> num3;
         
