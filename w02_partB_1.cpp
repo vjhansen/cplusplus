@@ -1,13 +1,8 @@
-/*
-
- Create table with:
+/* Create table with:
  Size three(3) that stores objects of the type Student.
  Size three(3) that stores objects of the type pointer to Student.
  
  Alter the name of the three students in their two tables to "Calvin", "Hobbes" and "Dad".
- 
- Extra assignment:
-    Create a linked list of student objects. Hint: Create a StudentLink class.
  */
 
 
@@ -31,7 +26,7 @@ public:
     void setName();     //-modify name
     void setAge();      //-modify age
     void setDegree();   //-modify degree
-   
+    
     void printData();
     
 private:
@@ -57,19 +52,18 @@ Student::Student(std::string n, int a, std::string d) {
 Student::~Student() {
 }
 
-
 //-----------Get----------------------
 std::string Student::getName() const {return Name;}
 int Student::getAge() const {return Age;}
 std::string Student::getDegree() const {return Degree;}
 
 //-----------Set----------------------
-void fillVec(std::vector<Student*> &new_Vec_students){
+void fillVec(std::vector<Student*>& new_Vec_students) {
     Student* p_students = NULL;
     std::string n;
     int a;
     std::string d;
-    std::cout<<"How many students (max 3)? ";
+    std::cout<<"How many students? ";
     int size;
     std::cin>>size;
     
@@ -87,21 +81,25 @@ void fillVec(std::vector<Student*> &new_Vec_students){
 }
 
 // a->b =(*a).b, access member through pointer
-void printVec(const std::vector<Student*> &new_students) {
+void printVec(const std::vector<Student*> new_students) {
     for (int i=0; i<new_students.size(); i++) {
-        std::cout   <<"Created a student: "<<new_students[i]->getName()
+        std::cout<<"Created a student: "<<new_students[i]->getName()
         <<", "<<new_students[i]->getAge()
         <<", "<<new_students[i]->getDegree()<< std::endl;
         std::cout<<std::endl;
     }
 }
 
-static void cleanUP(std::vector<Student*> &students) {
+static void cleanUP(std::vector<Student*>& students) {
     for (std::vector<Student*>::iterator pObj = students.begin(); pObj!=students.end(); ++pObj) {
         delete *pObj;
     }
+    for (int i=0; i<students.size(); ++i) {
+        std::cout<<"Deleting: "<<students[i]->getName()
+        <<", "<<students[i]->getAge()
+        <<", "<<students[i]->getDegree()<< std::endl;
+    }
     students.clear();
-    std::cout<<"\ndeleted..\n";
 }
 
 int main() {
