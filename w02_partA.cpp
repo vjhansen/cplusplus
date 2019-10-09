@@ -10,71 +10,102 @@
  
  */
 
-#include <iostream>
 
+#include <iostream>
+#include <vector>
+
+//------------------------------------------------------
 class Student {
 public:
-    // default constructor
-    void setData(std::string Name, int age, std::string degree);
-    std::string getName(void);
-    std::string getDegree(void);
-    int getAge(void);
-
-    void PrintData(void);
+    Student();  //-Default constructor
+    Student(std::string, int, std::string); //-Overloaded constructor
     
-    Student();  // constructor
-    ~Student(); // destructor
+    ~Student(); //-Destructor
+    
+    //-Accessors (const = not modifiable)
+    std::string getName() const;    //-return name
+    int getAge() const;             //-return age
+    std::string getDegree() const;  //-return degree
+    
+    //-Mutators (modifiable)
+    void setName();     //-modify name
+    void setAge();      //-modify age
+    void setDegree();   //-modify degree
+    
+    void printData();
     
 private:
-    // data members
     std::string Name;
-    int age;
-    std::string degree;
+    int Age;
+    std::string Degree;
 };
+//------------------------------------------------------
 
-Student::Student(void) {
+
+//-Default constructor (:: = 'scope resolution')
+Student::Student() {
     std::cout << "Create a student: <name>, <age>, <degree> \n";
+    Name = "John Doe";
+    Age = -1;
+    Degree = "Other degree";
+}
+//-Overloaded constructor
+Student::Student(std::string n, int a, std::string d) {
+    std::cout << "Create a student: <name>, <age>, <degree> \n";
+    Name = n;
+    Age = a;
+    Degree = d;
+}
+//-Destructor
+Student::~Student() {
+    std::cout << "Deleted student: "<< Name <<", " << Age <<", "<< Degree << std::endl;
+
+}
+
+void Student::printData() {
+    std::cout <<"Created a student: "<< Name <<", " << Age <<", "<< Degree << std::endl;
 }
 
 
-Student::~Student(void) {
-    std::cout << "Deleted student: "<< Name <<", " << age <<", "<< degree << std::endl;
-}
 
-void Student::setData(std::string set_name, int age_set, std::string set_deg) {
-    Name = set_name;
-    age = age_set;
-    degree = set_deg;
-}
-
-
-void Student::PrintData(void) {
-    std::cout <<"Created a student: "<< Name <<", " << age <<", "<< degree << std::endl;
-}
-
-
-std::string Student::getName(void) {
-    std::cout << "\n" << "Enter name: ";
-    std::cin >> Name;
+//-----------Get----------------------
+std::string Student::getName() const {
     return Name;
 }
-std::string Student::getDegree(void) {
-    std::cout << "\n" << "Enter degree: ";
-    std::cin >> degree;
-    return degree;
+int Student::getAge() const {
+    return Age;
 }
-int Student::getAge(void) {
-    std::cout << "\n" << "Enter age: ";
-    std::cin >> age;
-    return age;
+std::string Student::getDegree() const {
+    return Degree;
+}
+
+//-----------Set----------------------
+void Student::setName() {
+    std::string n;
+    std::cout<<"Enter name: ";
+    std::cin>>n;
+    Name = n;
+}
+void Student::setAge() {
+    int a;
+    std::cout<<"Enter age: ";
+    std::cin>>a;
+    Age = a;
+}
+void Student::setDegree() {
+    std::string d;
+    std::cout<<"Enter degree: ";
+    std::cin>>d;
+    Degree = d;
 }
 
 
 int main() {
-    Student stud1;
-    stud1.getName();
-    stud1.getAge();
-    stud1.getDegree();
-    stud1.PrintData();
+    Student stud2;
+    stud2.setName();
+    stud2.setAge();
+    stud2.setDegree();
+    stud2.printData();
+   
     return 0;
 }
