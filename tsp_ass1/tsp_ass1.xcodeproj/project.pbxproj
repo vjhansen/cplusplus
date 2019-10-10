@@ -25,6 +25,10 @@
 /* Begin PBXFileReference section */
 		572749CF2345590800431807 /* tsp_ass1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tsp_ass1; sourceTree = BUILT_PRODUCTS_DIR; };
 		572749D22345590800431807 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		573D5C9E234FC20D00D7EF3E /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
+		573D5C9F234FC3F500D7EF3E /* example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.txt; sourceTree = "<group>"; };
+		573D5CA0234FC46900D7EF3E /* test-5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-5.txt"; sourceTree = "<group>"; };
+		573D5CA1234FC46900D7EF3E /* test-2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-2.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,10 @@
 		572749C62345590800431807 = {
 			isa = PBXGroup;
 			children = (
+				573D5C9F234FC3F500D7EF3E /* example.txt */,
+				573D5CA1234FC46900D7EF3E /* test-2.txt */,
+				573D5CA0234FC46900D7EF3E /* test-5.txt */,
+				573D5C9E234FC20D00D7EF3E /* File.txt */,
 				572749D12345590800431807 /* tsp_ass1 */,
 				572749D02345590800431807 /* Products */,
 			);
