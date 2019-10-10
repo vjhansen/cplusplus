@@ -1,16 +1,21 @@
-//  Travelling salesman problem
-//  Victor
+//  USN, Kongsberg
+//  OOP4200
+//  Travelling salesman problem, v1
+//  Victor J. Hansen, 2019
 
 
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
+#include <cmath>
+#include <algorithm>
+
 //---------------------Point.h---------------------------------
 class Point {
 public:
     Point();  //-Default constructor
-    Point(int, int, int); //-Overloaded constructor
+    Point(float, float, float); //-Overloaded constructor
     
     ~Point(); //-Destructor
     
@@ -25,11 +30,12 @@ public:
     void setZ_coord();     //-modify z coordinate
     
     void printData();
+    double distanceTo(const Point &p) const;
     
 private:
-    int x_coord;
-    int y_coord;
-    int z_coord;
+    float x_coord;
+    float y_coord;
+    float z_coord;
 };
 //------------------------------------------------------
 
@@ -40,7 +46,7 @@ Point::Point() {
     z_coord = 0;
 }
 //-Overloaded constructor
-Point::Point(int x, int y, int z) {
+Point::Point(float x, float y, float z) {
     x_coord = x;
     y_coord = y;
     z_coord = z;
@@ -55,13 +61,9 @@ int Point::getY_coord() const {return y_coord;}
 int Point::getZ_coord() const {return z_coord;}
 
 //-----------Set----------------------
-
-//
-void fillVec(std::vector<Point*>& new_vec_points) {
-    Point* p_points = NULL;
-    int x;
-    int y;
-    int z;
+void fillVec(std::vector<Point>& new_vec_points) {
+    
+    float x,y,z;
     std::cout<<"How many points(x,y,z)? ";
     int size;
     std::cin>>size;
@@ -70,35 +72,42 @@ void fillVec(std::vector<Point*>& new_vec_points) {
         std::cout<<"Point("<<i<<"): ";
         std::cin>>x>>y>>z;
         std::cout<<std::endl;
-        p_points = new Point(x,y,z);
-        new_vec_points.push_back(p_points);
+        Point new_Points(x,y,z);
+        new_vec_points.push_back(new_Points);
     }
+}
+
+double Point::distanceTo(const Point &p) const {
+    float x1, y1, z1;
+    float x2, y2, z2;
+    
+    x1 = x_coord;
+    y1 = y_coord;
+    z1 = z_coord;
+
+    x2 = p.getX_coord();
+    y2 = p.getY_coord();
+    z2 = p.getZ_coord();
+        
+    return sqrt( pow(x2-x1,2)+pow(y2-y1,2)+pow(z2-z1,2) );
 }
 
 // a->b =(*a).b, access member through pointer
-void printVec(const std::vector<Point*> new_points) {
+void printVec(const std::vector<Point>& new_points) {
     for (int i=0; i<new_points.size(); i++) {
-        std::cout<<"Point("<<i<<"): "<<new_points[i]->getX_coord()
-        <<", "<<new_points[i]->getY_coord()
-        <<", "<<new_points[i]->getZ_coord()<< std::endl;
+        std::cout<<"Point("<<i<<"): "<<new_points[i].getX_coord()
+        <<", "<<new_points[i].getY_coord()
+        <<", "<<new_points[i].getZ_coord()<< std::endl;
     }
 }
 
-// some trouble here
-static void cleanUP(std::vector<Point*>& points) {
-    for (std::vector<Point*>::iterator pObj = points.begin(); pObj!=points.end(); ++pObj) {
-        delete *pObj;
-    }
-    for (int i=0; i<points.size(); ++i) {
-        std::cout<<"Deleting: "<<"Point("<<i<<")"<<std::endl;
-    }
-    points.clear();
-}
 
 static void read_txt_file() {
     std::string line;
     std::ifstream myfile;
     myfile.open("test-2.txt");
+    // fil inneholder antall points på linje 1
+    // videre inneholder den xyz-coord for hvert punkt.
     
     if (myfile.is_open())
     {
@@ -114,16 +123,72 @@ static void read_txt_file() {
 }
 
 
+/* if the vector 'order' = [3 1 2 0], the total distance will be the sum of:
+ - D{3:1} = distance from points[3] to points[1]
+ - D{1:2}
+ - D{2:0}
+ - D{0:3} -- roundtrip
+ 
+ --> D_tot = D{3:1}+D{1:2}+D{2:0}+D{0:3}
+ */
+
+double circuitLength(const std::vector<Point>& points, const std::vector<int>& order) {
+    float d = 0.0;
+    for (int i = 0; i < order.size()-1; i++) {
+        d += points[order[i]].distanceTo(points[order[i+1]]);
+    }
+    d += points[order.size() - 1].distanceTo(points[order[0]]);
+    return d;
+}
+
+// use permutation
+std::vector<int> findShortestPath(const std::vector<Point>& points){
+    
+    std::vector<int> bestPath;
+    std::vector<int> path(points.size());
+    double short_Dist, curr_Dist;
+    
+    for (int i=0; i<path.size(); i++) {
+        path[i] = i;
+    }
+    
+    short_Dist = circuitLength(points, path);
+    bestPath = path;
+    
+    while (std::next_permutation(path.begin(),path.end())) {
+        curr_Dist = circuitLength(points, path);
+        
+        if (curr_Dist < short_Dist) {
+            short_Dist = curr_Dist;
+            bestPath = path;
+        }
+    }
+    return bestPath;
+}
+
+
+static void printPath(std::vector<int> &shortestPath) {
+    std::cout <<"Best order: ";
+    for (int i = 0; i < shortestPath.size(); i++) {
+        std::cout << shortestPath.at(i) << ' ';
+    }
+}
 
 int main() {
     
-    std::vector<Point*> points;
-    points.reserve(3);
+    std::vector<Point> points;
+    //points.reserve(3);
     fillVec(points);
     printVec(points);
-    cleanUP(points);
-        
-     //read_txt_file();
+    
+    std::vector<int> shortestPath;
+    shortestPath = findShortestPath(points);
+    printPath(shortestPath);
+    
+    std::cout<<"\nShortest distance: "<< circuitLength(points, shortestPath)<<std::endl;
+    
+    //read_txt_file();
+    points.clear();
     
     return 0;
 }
