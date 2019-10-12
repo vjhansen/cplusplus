@@ -83,6 +83,12 @@ private:
 int main() {
     Student stu("Student",20,300);
     stu.printStudent();
+    
+ //alt.
+ //Student stu("Student",20,300);
+ //Student* s_p = &stu;
+ //s_p->printStudent();
+ 
     Professor pro("Prof.",30,50);
     pro.printProfessor();
     return 0;
