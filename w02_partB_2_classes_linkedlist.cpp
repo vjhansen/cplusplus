@@ -97,7 +97,6 @@ static void setValues(StudentLink *list) {
     }
 }
 
-
 int main() {
     StudentLink* list = new StudentLink();
     setValues(list);
