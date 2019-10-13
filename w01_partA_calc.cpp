@@ -43,7 +43,7 @@ int main() {
             
         case '/':
             if (num2==0) {
-                cout << "Bad boy!" << endl;
+                cout << "Don't divide by zero!" << endl;
             }
             else
             cout << "The answer of " << num1 << op << num2 << " is " << num1/num2 << endl;
