@@ -80,7 +80,7 @@ double Point::euclidDist(const Point &p) const {
 static void read_txt_and_fill(std::vector<Point>& vec_points) {
     std::ifstream myfile;
     std::vector<int> read_point;
-    myfile.open("test-8.txt");
+    myfile.open("test-10.txt");
     if (myfile.is_open()) {
         int points;
         while (myfile>>points) {
@@ -99,18 +99,6 @@ static void read_txt_and_fill(std::vector<Point>& vec_points) {
     }
 }
 
-void manualFill(std::vector<Point>& new_vec_points) {
-    double x,y,z;
-    std::cout<<"\nHow many points? ";
-    int size;
-    std::cin>>size;
-    for (int i=0; i<size; i++) {
-        std::cout<<"Point("<<i<<"): ";
-        std::cin>>x>>y>>z;
-        Point new_Points(x,y,z);
-        new_vec_points.push_back(new_Points);
-    }
-}
 
 //-Print points
 void printVec(const std::vector<Point>& new_points) {
@@ -175,17 +163,9 @@ static void printPath(std::vector<int> &shortestPath) {
 
 int main() {
     std::vector<Point> points;
-    int choice = 0;
-    std::cout<<"1. Read points from .txt-file.\n";
-    std::cout<<"2. Fill in points manually.\n";
-    std::cout<<"Your choice: ";
-    std::cin>>choice;
-    if (choice == 1) {
-        std::cout<<"reading from .txt-file\n";
-        read_txt_and_fill(points);
-    } else if (choice == 2) {
-        manualFill(points);
-    }
+    std::cout<<"reading from .txt-file\n";
+    read_txt_and_fill(points);
+
     printVec(points);
     std::vector<int> shortestPath;
     

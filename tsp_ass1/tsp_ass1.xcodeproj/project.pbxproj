@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		572749D32345590800431807 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 572749D22345590800431807 /* main.cpp */; };
+		57059B732353284D0021C5DE /* tsp_v2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57059B722353284D0021C5DE /* tsp_v2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +23,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		57059B722353284D0021C5DE /* tsp_v2.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = tsp_v2.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		572749CF2345590800431807 /* tsp_ass1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tsp_ass1; sourceTree = BUILT_PRODUCTS_DIR; };
-		572749D22345590800431807 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		572749D22345590800431807 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		573D5CA0234FC46900D7EF3E /* test-5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-5.txt"; sourceTree = "<group>"; };
 		573D5CA1234FC46900D7EF3E /* test-2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-2.txt"; sourceTree = "<group>"; };
 		574C11E723511F8600514AE5 /* test-8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "test-8.txt"; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				572749D22345590800431807 /* main.cpp */,
+				57059B722353284D0021C5DE /* tsp_v2.cpp */,
 			);
 			path = tsp_ass1;
 			sourceTree = "<group>";
@@ -129,7 +131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				572749D32345590800431807 /* main.cpp in Sources */,
+				57059B732353284D0021C5DE /* tsp_v2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +250,7 @@
 		572749D72345590800431807 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -256,6 +259,7 @@
 		572749D82345590800431807 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
