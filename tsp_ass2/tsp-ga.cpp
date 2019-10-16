@@ -1,11 +1,9 @@
 // Victor
 
 #include "tsp-ga.h"
-
 using namespace std;
 
 TSPGenome::TSPGenome(){}
-
 
 TSPGenome::TSPGenome(const std::vector<int> &order) {
 	// initializes the genome from the specified visit order.
@@ -21,7 +19,6 @@ TSPGenome::TSPGenome(int numPoints) {
     random_shuffle(visitOrder.begin(), visitOrder.end()); //-randomly permute the vector.
 }
 
-
 void TSPGenome::mutate() {
   //-Mutates the genome by swapping two randomly-selected values in the order vector.
      int i = rand() % (visitOrder.size()-1) +1;
@@ -32,7 +29,6 @@ void TSPGenome::mutate() {
      std::swap(visitOrder[i], visitOrder[j]); 
 }
 
-
 void TSPGenome::computeCircuitLength(const std::vector<Point>& points){
   circuitLength = 0;
 
@@ -41,8 +37,6 @@ void TSPGenome::computeCircuitLength(const std::vector<Point>& points){
                                              (visitOrder.size())]]);
     }
   
-
-
   /*std::vector<int>::const_iterator order_iter = visitOrder.begin();
   Point start = points[*order_iter];    // Store starting value for roundtrip
   Point currPos = points[*order_iter];  // Current position
@@ -59,7 +53,6 @@ void TSPGenome::computeCircuitLength(const std::vector<Point>& points){
     return circuitLength;
   }
 
-
 TSPGenome crosslink(const TSPGenome &g1, const TSPGenome &g2) {
     std::vector<int> newOrder; // offspring
     std::set<int> track;
@@ -68,7 +61,6 @@ TSPGenome crosslink(const TSPGenome &g1, const TSPGenome &g2) {
         track.insert(g1.getOrder()[i]);
         newOrder.push_back(g1.getOrder()[i]); // copy g1's order-values at indexes [0, i-1] to the new vector. 
     }
-
     // iterate through g2's entire vector, copying each value to the new result vector, 
     for (int i = 0; i < g2.getOrder().size(); ++i) {
     	if (track.count(g2.getOrder()[i]) != newOrder.at(i)) {
@@ -78,15 +70,12 @@ TSPGenome crosslink(const TSPGenome &g1, const TSPGenome &g2) {
     return(TSPGenome(newOrder));
 }
 
-
 bool isShorterPath(const TSPGenome &g1, const TSPGenome &g2) {
   //return true if g1 has a shorter circuit length than g2; 
   if(g1.getCircuitLength() < g2.getCircuitLength()) return true;
   return false;
 }
 
-
-//############################################################
 TSPGenome findAShortPath(const std::vector<Point> &points,
   int populationSize, int numGenerations, 
   int keepPopulation, int numMutations) {
@@ -97,11 +86,8 @@ TSPGenome findAShortPath(const std::vector<Point> &points,
   // generate random(?) genomes (population), size of genome = # of points
   for (int i = 0; i < populationSize; i++) {
     population.push_back(TSPGenome(points.size()));
-    
   }
-
   std::sort(population.begin(), population.end(), isShorterPath);
-
   for (int gen = 0; gen < numGenerations; gen++) {
     for (int i = 0; i < populationSize; i++) {
       population[i].computeCircuitLength(points);   // compute circuit length for each genome
@@ -117,17 +103,11 @@ TSPGenome findAShortPath(const std::vector<Point> &points,
       g2 = rand() % keepPopulation;
       population[i] = crosslink(population[g1], population[g1]);
     }
-
-    // mutation
     // numMutations specifies how many mutations to apply to the population. 
-    // You can implement a simple loop that chooses a random index, 
-    // then calls mutate() on the genome at that index.
     for (int i = 0; i < numMutations; i++) {
       population[1+rand() % (populationSize-1)].mutate();
     }
   }
     std::sort(population.begin(), population.end(), isShorterPath);
-
   return population[0];
 }
-//############################################################
