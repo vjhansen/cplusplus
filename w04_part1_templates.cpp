@@ -24,12 +24,17 @@ Effective C++, Scott Meyers
 */
 
 
+// create objects
+
+
 #include <iostream>
 #include <cmath>
 
 template <class X>
 void Swap(X& a, X& b) {
     X temp;
+    // pass by value needs a copy constructor
+    // pass by reference doesn't need a copy constructor
     temp = a;   // temp gets address of a
     a = b;      // a gets address of b
     b = temp;   // b gets address of temp (=a)
