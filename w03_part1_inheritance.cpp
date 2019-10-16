@@ -11,7 +11,6 @@
  */
 
 
-
 #include <iostream>
 #include <string>
 
@@ -21,9 +20,7 @@ public:
     Human() {
         std::cout<<"Creating default Human"<<std::endl;
     }
-    Human(std::string n, int a) {
-        Name = n;
-        Age = a;
+    Human(std::string n, int a) : Name(n), Age(a) {
         std::cout<<"Creating overloaded Human"<<std::endl;
     }
     
@@ -47,9 +44,7 @@ private:
 //------------------------------------
 class Student : public Human {
 public:
-    Student(std::string s_name, int s_age, int e) : Human(s_name, s_age) {
-        s_name = s_name;
-        s_age = s_age;
+    Student(std::string Name, int Age, int e) : Human(Name, Age) {
         ECTS = e;
         std::cout<<"Creating overloaded Student"<<std::endl;
     }
@@ -64,10 +59,8 @@ private:
 //------------------------------------
 class Professor : public Human {
 public:
-    Professor(std::string p_name, int p_age, int p) : Human(p_name, p_age) {
-        p_name = p_name;
-        p_age = p_age;
-        Papers = p;
+    Professor(std::string Name, int Age, int P) : Human(Name, Age) {
+        Papers = P;
         std::cout<<"Creating overloaded Professor"<<std::endl;
     }
     int getPapers() const {return Papers;}
@@ -81,7 +74,7 @@ private:
 //------------------------------------
 
 int main() {
-    Student stu("Student",20,300);
+    Student stu("Putin",20,300);
     stu.printStudent();
     
  //alt.
