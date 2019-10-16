@@ -81,9 +81,9 @@ int main() {
     SecretAgent james;
     james.setAgentNr();
     james.printAgent();
-    SecretAgent over("Alf",40,"008");
-    over.printAgent();
-    return 0;
     
+    SecretAgent S("Stalin",40,"008");
+    S.printAgent();
+    return 0;   
     // only the agentNr will be printed.
 }
