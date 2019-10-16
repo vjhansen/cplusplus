@@ -29,6 +29,10 @@ z = GetMax(x, y); // char GetMax (char a, char b);
 */
 
 
+
+// create objects
+
+
 #include <iostream>
 #include <cmath>
 
