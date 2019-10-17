@@ -20,7 +20,6 @@
 #include "point.h" //Point class
 #include "tsp-ga.h"
 
-
 //-Overloaded constructor
 Point::Point(double x, double y, double z) {
     x_coord = x;
@@ -40,7 +39,7 @@ double Point::calcDist(const Point& p2) const {
 static void read_txt_and_fill(std::vector<Point>& txt_points) {
     std::ifstream myfile;
     std::vector<int> read_point;
-    myfile.open("test-12.txt");
+    myfile.open("test-100.txt");
     if (myfile.is_open()) {
         int points;
         while (myfile>>points) {
@@ -81,12 +80,12 @@ void printVec(const std::vector<Point>& points) {
     }
 }
 
- void printPath(const std::vector<int> &shortestPath) {
+ void printPath(const std::vector<int>& shortestPath) {
     std::cout<<"\nBest order: [ ";
     for (int i=0; i<shortestPath.size()-1; i++) {
-        std::cout<<shortestPath.at(i)<<' ';
+        std::cout<<shortestPath[i]<<' ';
     }
-    std::cout<<"]";
+    std::cout<<shortestPath[shortestPath.size()-1]<<"]"<<std::endl;
 }
 
 void PrintNumberOfPoints(const std::vector<Point>& points) {
@@ -94,43 +93,42 @@ void PrintNumberOfPoints(const std::vector<Point>& points) {
     std::cout<<"\nNumber of Point objects alive = "<<counter<Point>::Points_alive<<std::endl;
 }
 
-
-int main() {
-
+int main(int argc, char **argv) {
     //int choice = 0;
     std::vector<Point> points;
    
-    int popSize = points.size();
-    
-    int numGen = 0;
-    float keepPop = 0.0;
-    float numMut =0.0;
-/*
-    int popSize = points.size();
-    popSize = (int) atoi(argv[1]);
-    int numGen = (int) atoi(argv[2]);
-    float keepPop = (float) atof(argv[3]);
-    float numMut = (float) atof(argv[4]);*/
-
     std::cout<<"\n**reading from .txt-file**\n";
-        read_txt_and_fill(points);
-        printVec(points);
-    
-    if (popSize < 0 || numGen < 0|| keepPop<0 || numMut <0) {
+    read_txt_and_fill(points);
+    printVec(points);
+    // = points.size();
+    unsigned int popSize; // positive int
+    unsigned int numGen; // positive int
+    float keepPop; // float [0, 1] % of population to keep
+    float numMut; //positive float, e.g. 1.5*pop
+
+   // popSize = (int) atoi(argv[1]);
+    /*int numGen = (int) atoi(argv[2]);
+    int keepPop = (int) ( atof(argv[3]) * ((double)popSize + 0.5 ));
+    int numMut = (int) (popSize * atof(argv[4]));*/
+
+    std::cout<< "\nEnter population: ";
+    std::cin>>popSize;
+    std::cout<< "\nEnter number of generations: ";
+    std::cin>>numGen;
+    std::cout<< "\nKeep (0-1): ";
+    std::cin>>keepPop;
+    std::cout<< "\nMutation (float): ";
+    std::cin>>numMut;
+
+    if (popSize<0||numGen<0||(keepPop<0 && keepPop>1)||numMut<0) {
         std::cout<<"error";
-    }
-
-     std::cout<< "\nEnter number of generations: ";
-        std::cin>>numGen;
-        std::cout<< "\nKeep (0-1): ";
-        std::cin>>keepPop;
-        std::cout<< "\nMutation (float): ";
-        std::cin>>numMut;
-        
+    } 
+    numMut = (int)popSize*numMut;
+    keepPop = (int)(double(popSize+0.5))*keepPop;
+    srand(time(nullptr));
     TSPGenome path(points.size());
-    path = findAShortPath(points, popSize, numGen, int(keepPop*popSize), int(numMut*popSize));
+    path = findAShortPath(points, popSize, numGen, keepPop, numMut);
     std::cout<<"\nShortest distance: "<<path.getCircuitLength()<<std::endl;
-
-    //printPath(path.getOrder());
+    printPath(path.getOrder());
     return 0;
 }
