@@ -34,13 +34,14 @@ class Token {
 public:
     char kind;
     double value; // for numbers
-    Token(char ch): kind(ch),value(0) {}
+    Token(char ch): kind(ch), value(0) {}
     Token(char ch, double val): kind(ch), value(val) {}
 };
 
 class Token_stream {
 public:
-    Token_stream();
+    Token_stream(); // constructor
+    
     Token get();
     void putback(Token curr_token);
 
@@ -49,7 +50,7 @@ private:
     Token buffer;
 };
 
-Token_stream::Token_stream():full(false),buffer(0){}; // constructor
+Token_stream::Token_stream():full(false),buffer(0){}; // default constructor
 
 void Token_stream::putback(Token curr_token) {
     if (full) error("putback() into full buffer");
@@ -113,10 +114,10 @@ double expression();
 */
 
 double primary() { // handles numbers and parentheses, calls expression().
-    Token curr_token = ts.get();
+    Token curr_token = ts.get(); // get token
     switch (curr_token.kind) {
         case number: {
-            return curr_token.value;
+            return curr_token.value; //return number
         }
         case MINUS:
             return -primary();
