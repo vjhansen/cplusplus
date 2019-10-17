@@ -8,7 +8,6 @@ clang++ -std=c++11 -stdlib=libc++ main.cpp
 
 
 3. You can swap the value of two objects of the class/type string.
-
 As long as your types support copying (via copy constructor and copy assignment operator), 
     the default swap implementation will let objects of your types be swapped without 
     your having to do any special work to support it.
@@ -24,11 +23,31 @@ Effective C++, Scott Meyers
 */
 
 
-// create objects
-
-
 #include <iostream>
 #include <cmath>
+#include <string>
+
+class abc {
+public:
+	abc();
+	abc(std::string);
+	~abc(){;}
+	
+	std::string getString() const;
+
+private:
+	std::string str;
+};
+
+abc::abc() {
+	str = " ";
+}
+
+abc::abc(std::string s) {
+	str = s;
+}
+
+std::string abc::getString() const {return str;}
 
 template <class X>
 void Swap(X& a, X& b) {
@@ -49,10 +68,16 @@ int main() {
     const char * Cstr1 = "Chei";
     const char * Cstr2 = "Challo";
 
+    abc a("hei");
+    abc b("hallo");
+
     Swap(nI, nJ); // ok
     Swap(c1, c2); // ok
     Swap(f1, f2); // ok
     Swap(s1, s2); // ok
     Swap(Cstr1, Cstr2); // ok   
+
+    Swap(a,b); // ok
+    std::cout<<a.getString()<<" " <<b.getString();
     return 0;
 }
