@@ -16,6 +16,11 @@
 
 //------------------------------------------------------
 class Student {
+private:
+    std::string Name;
+    int Age;
+    std::string Degree;
+ 
 public:
     Student();  //-Default constructor
     Student(std::string, int, std::string); //-Overloaded constructor
@@ -33,11 +38,6 @@ public:
     void setDegree();   //-modify degree
     
     void printData();
-    
-private:
-    std::string Name;
-    int Age;
-    std::string Degree;
 };
 //------------------------------------------------------
 
@@ -59,14 +59,11 @@ Student::Student(std::string n, int a, std::string d) {
 //-Destructor
 Student::~Student() {
     std::cout << "Deleted student: "<< Name <<", " << Age <<", "<< Degree << std::endl;
-
 }
 
 void Student::printData() {
     std::cout <<"Created a student: "<< Name <<", " << Age <<", "<< Degree << std::endl;
 }
-
-
 
 //-----------Get----------------------
 std::string Student::getName() const {
@@ -99,13 +96,11 @@ void Student::setDegree() {
     Degree = d;
 }
 
-
 int main() {
     Student stud2;
     stud2.setName();
     stud2.setAge();
     stud2.setDegree();
     stud2.printData();
-   
     return 0;
 }
