@@ -1,5 +1,4 @@
 /*
-
  Create table with:
  Size three(3) that stores objects of the type Student.
  Size three(3) that stores objects of the type pointer to Student.
@@ -10,12 +9,16 @@
     Create a linked list of student objects. Hint: Create a StudentLink class.
  */
 
-
 #include <iostream>
 #include <vector>
 #include <string>
 //---------------------student.h---------------------------------
 class Student {
+private:
+    std::string Name;
+    int Age;
+    std::string Degree;
+ 
 public:
     Student();  //-Default constructor
     Student(std::string, int, std::string); //-Overloaded constructor
@@ -33,11 +36,6 @@ public:
     void setDegree();   //-modify degree
    
     void printData();
-    
-private:
-    std::string Name;
-    int Age;
-    std::string Degree;
 };
 //------------------------------------------------------
 
@@ -54,9 +52,7 @@ Student::Student(std::string n, int a, std::string d) {
     Degree = d;
 }
 //-Destructor
-Student::~Student() {
-}
-
+Student::~Student() {}
 
 //-----------Get----------------------
 std::string Student::getName() const {return Name;}
@@ -98,6 +94,5 @@ int main() {
     std::vector<Student> students;
     fillVec(students);
     printVec(students);
-    
     return 0;
 }
