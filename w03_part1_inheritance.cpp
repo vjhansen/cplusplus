@@ -16,6 +16,10 @@
 
 //------------------------------------
 class Human {
+private:
+    std::string Name;
+    int Age;
+ 
 public:
     Human() {
         std::cout<<"Creating default Human"<<std::endl;
@@ -36,13 +40,12 @@ public:
         std::cout<<"Name: "<<Name<<std::endl
         <<"Age: "<<Age<<std::endl;
     }
-    
-private:
-    std::string Name;
-    int Age;
 };
 //------------------------------------
 class Student : public Human {
+private:
+    int ECTS;
+
 public:
     Student(std::string Name, int Age, int e) : Human(Name, Age) {
         ECTS = e;
@@ -53,11 +56,12 @@ public:
         Human::printHuman();
         std::cout<<"ECTS: "<<ECTS<<std::endl;
     }
-private:
-    int ECTS;
 };
 //------------------------------------
 class Professor : public Human {
+private:
+    int Papers;
+
 public:
     Professor(std::string Name, int Age, int P) : Human(Name, Age) {
         Papers = P;
@@ -68,8 +72,6 @@ public:
         Human::printHuman();
         std::cout<<"Papers: "<<Papers<<std::endl;
     }
-private:
-    int Papers;
 };
 //------------------------------------
 
@@ -77,7 +79,7 @@ int main() {
     Student stu("Putin",20,300);
     stu.printStudent();
     
- //alt.
+ //alternative.
  //Student stu("Student",20,300);
  //Student* s_p = &stu;
  //s_p->printStudent();
