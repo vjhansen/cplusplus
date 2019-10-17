@@ -11,6 +11,11 @@
 #include <string>
 //---------------------student.h---------------------------------
 class Student {
+private:
+    std::string Name;
+    int Age;
+    std::string Degree;
+ 
 public:
     Student();  //-Default constructor
     Student(std::string, int, std::string); //-Overloaded constructor
@@ -28,11 +33,6 @@ public:
     void setDegree();   //-modify degree
     
     void printData();
-    
-private:
-    std::string Name;
-    int Age;
-    std::string Degree;
 };
 //------------------------------------------------------
 
@@ -49,8 +49,7 @@ Student::Student(std::string n, int a, std::string d) {
     Degree = d;
 }
 //-Destructor
-Student::~Student() {
-}
+Student::~Student() {}
 
 //-----------Get----------------------
 std::string Student::getName() const {return Name;}
