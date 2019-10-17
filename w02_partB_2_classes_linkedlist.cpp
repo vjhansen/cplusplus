@@ -22,6 +22,9 @@ public:
 };
 //------------------------------------------------------
 class StudentLink {
+private:
+    StudentNode* head; // point to head
+
 public:
     StudentLink();  //-Default constructor
     StudentLink(std::string, int, std::string); //-Overloaded constructor
@@ -29,8 +32,6 @@ public:
    
     void addData(std::string, int, std::string);
     void print();
-private:
-    StudentNode* head; // point to head
 };
 
 //-Default constructor (:: = 'scope resolution')
@@ -46,14 +47,9 @@ StudentNode::StudentNode(std::string n, int a, std::string d) {
     Degree = d;
 }
 //-Destructor
-StudentNode::~StudentNode() {
-    std::cout<<"Node deleted";
-}
+StudentNode::~StudentNode() {std::cout<<"Node deleted";}
 
-// this:
-StudentLink::StudentLink() {
-    this->head = NULL;
-}
+StudentLink::StudentLink() {head = NULL;}
 
 StudentLink::~StudentLink() {
     std::cout<<"\nList deleted\n";
@@ -101,7 +97,6 @@ int main() {
     StudentLink* list = new StudentLink();
     setValues(list);
     list->print();
-    delete list;
-    
+    delete list;   
     return 0;
 }
