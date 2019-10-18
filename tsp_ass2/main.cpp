@@ -4,7 +4,7 @@
 //  Genetic algorithms (GAs)
 //  Victor J. Hansen, 2019
 
-// clang++ -std=c++11 -stdlib=libc++ main.cpp  
+//  clang++ -g -std=c++11 -stdlib=libc++ -Wall main.cpp tsp-ga.cpp
 
 #include <iostream>
 #include <sstream>
@@ -26,7 +26,6 @@ Point::Point(double x, double y, double z) {
     y_coord = y;
     z_coord = z;
 }
-Point::~Point(){} //-Destructor
 
 //-3D Euclidean space: sqrt( (x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2 )
 double Point::calcDist(const Point& p2) const {
@@ -39,7 +38,7 @@ double Point::calcDist(const Point& p2) const {
 static void read_txt_and_fill(std::vector<Point>& txt_points) {
     std::ifstream myfile;
     std::vector<int> read_point;
-    myfile.open("test-100.txt");
+    myfile.open("test-60.txt");
     if (myfile.is_open()) {
         int points;
         while (myfile>>points) {
@@ -53,7 +52,7 @@ static void read_txt_and_fill(std::vector<Point>& txt_points) {
     for (int i=0; i<read_point.front(); i++) {
         Point new_Points(read_point.at(n),read_point.at(n+1),read_point.at(n+2));
         txt_points.push_back(new_Points);
-        n+=3; // needed to place points into x, y and z.
+        n +=3; // needed to place points into x, y and z.
     }
 }
 
@@ -93,21 +92,26 @@ void PrintNumberOfPoints(const std::vector<Point>& points) {
     std::cout<<"\nNumber of Point objects alive = "<<counter<Point>::Points_alive<<std::endl;
 }
 
+
 int main(int argc, char **argv) {
     //int choice = 0;
     std::vector<Point> points;
-   
-    std::cout<<"\n**reading from .txt-file**\n";
+    std::cout<<"\n** reading from .txt-file **\n";
     read_txt_and_fill(points);
-    printVec(points);
+    if (points.size() < 60) { // not necessary to print too many points
+        printVec(points);
+    }
+    else std::cout<<"Read "<<points.size()<<" points"<<std::endl;
+    
     // = points.size();
-    unsigned int popSize; // positive int
-    unsigned int numGen; // positive int
-    float keepPop; // float [0, 1] % of population to keep
-    float numMut; //positive float, e.g. 1.5*pop
+    unsigned int popSize;   // positive int
+    unsigned int numGen;    // positive int
+    float keepPop;          // float [0, 1] % of population to keep
+    float numMut;           // positive float, e.g. 1.5*pop
 
-   // popSize = (int) atoi(argv[1]);
-    /*int numGen = (int) atoi(argv[2]);
+    //https://www.cs.swarthmore.edu/~newhall/unixhelp/C_commandlineargs.php
+    /* popSize = (int) atoi(argv[1]);
+    int numGen = (int) atoi(argv[2]);
     int keepPop = (int) ( atof(argv[3]) * ((double)popSize + 0.5 ));
     int numMut = (int) (popSize * atof(argv[4]));*/
 
@@ -120,15 +124,18 @@ int main(int argc, char **argv) {
     std::cout<< "\nMutation (float): ";
     std::cin>>numMut;
 
-    if (popSize<0||numGen<0||(keepPop<0 && keepPop>1)||numMut<0) {
-        std::cout<<"error";
-    } 
+    if (popSize<0||numGen<0||keepPop<0||keepPop>1||numMut<0) {
+        std::cout<<"**Values out of range**"<<std::endl;
+        return 0;
+    }
     numMut = (int)popSize*numMut;
-    keepPop = (int)(double(popSize+0.5))*keepPop;
-    srand(time(nullptr));
+    keepPop =  (int)(double(popSize+0.5))*keepPop;
+        
+    srand(time(nullptr)); // generate a different random sequence each time it runs
     TSPGenome path(points.size());
     path = findAShortPath(points, popSize, numGen, keepPop, numMut);
     std::cout<<"\nShortest distance: "<<path.getCircuitLength()<<std::endl;
     printPath(path.getOrder());
+    points.clear();
     return 0;
 }
