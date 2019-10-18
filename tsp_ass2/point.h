@@ -26,11 +26,16 @@ template <typename T> int counter<T>::Points_alive(0);
 
 
 class Point : counter<Point> {
+private:
+    double x_coord;
+    double y_coord;
+    double z_coord;
+
 public:
     Point();  //-Default constructor
     Point(double, double, double); //-Overloaded constructor
     
-    ~Point(); //-Destructor
+    ~Point(){;} //-Destructor
     
     //-Accessors (const = not modifiable)
     int getX_coord() const {return x_coord;}    //-return x coordinate
@@ -44,11 +49,6 @@ public:
     
     void printData();
     double calcDist(const Point &p) const;
-    
-private:
-    double x_coord;
-    double y_coord;
-    double z_coord;
 };
 
 #endif
