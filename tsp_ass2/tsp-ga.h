@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include "point.h"
 
+
 class TSPGenome {
 private:
 	double circuitLength;
@@ -30,10 +31,10 @@ public:
 };
 
 
-TSPGenome findAShortPath(const std::vector<Point> &points,
+TSPGenome findAShortPath(const std::vector<Point>& points,
   int populationSize, int numGenerations, 
   int keepPopulation, int numMutations);
 
-TSPGenome crosslink(const TSPGenome &g1, const TSPGenome &g2);
+TSPGenome crosslink(const TSPGenome& g1, const TSPGenome& g2);
 
 #endif
