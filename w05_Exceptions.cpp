@@ -59,13 +59,11 @@ throw statement:
 
 class ZeroException : public std::exception {
 public:
-	ZeroException() {
-		//std::cout<<"Got divided: "<<teller<<" by zero.\n";
-	}
+	ZeroException() {}
 	ZeroException(int);
 	~ZeroException(){;}
   	int getTeller() const {return teller;}
-    void setTeller(int t) {teller = t;}
+    	void setTeller(int t) {teller = t;}
 	int teller;	// what the divider attempted to divide by zero.
 };
 
@@ -75,7 +73,7 @@ float divide(int numerator, int divisor) {
 	if (divisor == 0) {
 		ZeroException e;
 		e.setTeller(numerator);
-		throw e;
+		throw e; // throw exception
 	}
 	return (numerator/divisor);
 }
