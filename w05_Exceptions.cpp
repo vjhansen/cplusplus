@@ -2,8 +2,6 @@
 
 W05 - Exception assignment
 
-clang++ -std=c++11 -stdlib=libc++ main.cpp 
-
 1. Create a class ZeroException that inherits from the exception-class in STL.
 
 2. Let it have a public attribute 'teller' that contains information about 
@@ -32,7 +30,6 @@ throw e
 */
 
 
-
 /*
 try block:
 	The code which can throw/cause an exception is kept inside a try block. 
@@ -56,7 +53,6 @@ throw statement:
 #include <exception>
 #include <cstdlib>
 
-
 class ZeroException : public std::exception {
 public:
 	ZeroException() {}
@@ -79,7 +75,7 @@ float divide(int numerator, int divisor) {
 }
 
 void testDivisor(void) {
-	for (int i=0 ;; i++) { // infinite loop
+	for (int i=1 ;; i++) { // infinite loop
 		try { divide(i, rand()%100); }
 		catch (const ZeroException& e) {
 			std::cout<<"Divided "<< i <<" times without generating a divide by zero."<<std::endl;
@@ -91,7 +87,6 @@ void testDivisor(void) {
 
 
 int main() {
-	//6. ZeroException should be regenerated to main(), that will terminate the program.
 	testDivisor();
 	return 0;
 }
