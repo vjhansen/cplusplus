@@ -7,7 +7,6 @@
 //  clang++ -g -std=c++11 -stdlib=libc++ -Wall main.cpp tsp-ga.cpp
 
 
-// sjekk hvilke av disse som trengs
 #include <iostream>
 #include <fstream>
 #include <vector>
