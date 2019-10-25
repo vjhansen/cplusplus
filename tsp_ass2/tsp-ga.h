@@ -1,4 +1,4 @@
-// Victor
+// Victor J. Hansen
 // tsp-ga.h
 
 #ifndef TSPG_H
@@ -11,30 +11,26 @@
 #include <cstdlib>
 #include "point.h"
 
-
 class TSPGenome {
 private:
-	double circuitLength;
-	std::vector<int> visitOrder;
+	double circuitLength; //
+	std::vector<int> visitOrder; //
 
 public:
 	TSPGenome();
-	TSPGenome(int numPoints);
-	TSPGenome(const std::vector<int> &order);
-	~TSPGenome(){;}
-
-	std::vector<int> getOrder() const {return visitOrder;}
-	double getCircuitLength() const;
-    
-    void computeCircuitLength(const std::vector<Point>& points);
-    void mutate();
+	TSPGenome(int numPoints); //
+	TSPGenome(const std::vector<int> &order); //
+	~TSPGenome(){;} // destructor
+	std::vector<int> getOrder() const {return visitOrder;} //
+	double getCircuitLength() const {return circuitLength;} // get the total distance covered if the points are visited in a circuit, in the specified order.
+    void computeCircuitLength(const std::vector<Point>& points); //
+    void mutate(); //
 };
 
-
-TSPGenome findAShortPath(const std::vector<Point>& points,
+TSPGenome findAShortPath(const std::vector<Point>& points, //
   int populationSize, int numGenerations, 
   int keepPopulation, int numMutations);
 
-TSPGenome crosslink(const TSPGenome& g1, const TSPGenome& g2);
+TSPGenome crosslink(const TSPGenome& g1, const TSPGenome& g2); //
 
 #endif
