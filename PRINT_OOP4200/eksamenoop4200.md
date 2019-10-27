@@ -1,4 +1,4 @@
-### OOP4200
+### OOP4200 - 28.11
 Konverter til pdf når ferdig.
 
 Det koster mer å printe ut fargekopier.
