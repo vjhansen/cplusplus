@@ -70,8 +70,8 @@ h. What library would you include if you wanted to use pseudo-random numbers?
  Numbers 2> 5
  The answer of 20 * 5 is 100.
 
-
-```#include <iostream>
+```
+#include <iostream>
 
 using namespace std;
 int num1, num2;
@@ -118,7 +118,8 @@ int main() {
             break;
     }
     return 0;
-} ```
+} 
+```
 
 
 
