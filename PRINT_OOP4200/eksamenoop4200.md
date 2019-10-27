@@ -1,17 +1,13 @@
-// eksamen oop4200
+### OOP4200
 Konverter til pdf når ferdig.
 
-Det koster mer å printe ut fargekopier..
+Det koster mer å printe ut fargekopier.
 
 Mail til Olaf: ser at "all written" support material er tillat på eksamen. 
 Inkluderer dette f.eks. selvskrevne notater, og bøker lånt på bibliotek?
 
 
 VHDL (45%) fra lectures, discussions, summary, assignments, 
-
-
-C++ (45%) fra lectures, assignments, discussions
-
 
 ADA (5%)
 
@@ -33,6 +29,8 @@ VHDL programming
 
 
 ### C++
+(45%)?, hent fra lectures, assignments, discussions
+
 #### Basic
 a. What #include statement do you always put at the top of your programs?
 ```#include <iostream>```
