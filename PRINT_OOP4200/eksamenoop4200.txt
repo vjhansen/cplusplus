@@ -1,0 +1,34 @@
+// eksamen oop4200
+Konverter til pdf når ferdig.
+
+Det koster mer å printe ut fargekopier..
+
+
+Mail til Olaf: ser at "all written" support material er tillat på eksamen. 
+Innebærer dette f.eks. selvskrevne notater, og bøker lånt på bibliotek?
+
+
+se github
+
+VHDL (45%) fra lectures, discussions, summary, assignments, 
+
+
+C++ (45%) fra lectures, assignments, discussions
+
+
+ADA (5%)
+
+
+MODULE CONTENT
+
+Pointers and memory
+Classes and objects
+Inheritance
+Abstract and interface classes
+Polymorphism
+I/O
+Templates and generic programming
+Exceptions
+Support for multithreading
+Differences between programming languages
+VHDL programming
