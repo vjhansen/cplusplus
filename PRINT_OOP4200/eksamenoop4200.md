@@ -3,9 +3,8 @@ Konverter til pdf når ferdig.
 
 Det koster mer å printe ut fargekopier..
 
-
 Mail til Olaf: ser at "all written" support material er tillat på eksamen. 
-Innebærer dette f.eks. selvskrevne notater, og bøker lånt på bibliotek?
+Inkluderer dette f.eks. selvskrevne notater, og bøker lånt på bibliotek?
 
 
 VHDL (45%) fra lectures, discussions, summary, assignments, 
