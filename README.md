@@ -1,8 +1,7 @@
-# C++, OOP4200, USN
+# C++
 
-### OOP4200 - 28.11
+### OOP4200, USN - 28.11
 Konverter til pdf når ferdig.
-
 Det koster mer å printe ut fargekopier.
 
 Mail til Olaf: ser at "all written" support material er tillat på eksamen. 
@@ -29,77 +28,30 @@ VHDL programming
 http://www.cplusplus.com/doc/tutorial/
 
 #### Basic
-a. What #include statement do you always put at the top of your programs?
-#include <iostream>
+- What #include statement do you always put at the top of your programs?
+```#include <iostream>```
 
-b. What using statement do you always put at the top of your programs?
-using namespace std;
+- What using statement do you always put at the top of your programs?
+```using namespace std;```
 
-c. Declare an integer variable N and initialize it to 10.
-int N = 10;
+- Declare an integer variable N and initialize it to 10.
+```int N = 10;```
 
-d. Give a statement to increase the value of variable N by 10.
-N = N + 10;
+- Give a statement to increase the value of variable N by 10.
+```N = N + 10;```
 
-e. What library would you include if you wanted to use the sin, cos, and tan functions?
-<cmath>
+- What library would you include if you wanted to use the sin, cos, and tan functions?
+```<cmath>```
 
-f. What library would you include it you wanted to do file input/output?
-<fstream>
+- What library would you include it you wanted to do file input/output?
+```<fstream>```
 
-g. What library would you include if you wanted to use vectors?
-<vector>
+- What library would you include if you wanted to use vectors?
+```<vector>```
 
-h. What library would you include if you wanted to use pseudo-random numbers?
-<cstdlib>
+- What library would you include if you wanted to use pseudo-random numbers?
+```<cstdlib>```
 
-# C++ Syntax Cheat Sheet
-
-## Preface
-Since the C++ language varies so heavily between versions (e.g. C++0x, C++11, C++17, etc.), I will preface this cheat sheet by saying that the majority of the examples here target C++0x or c++11, as those are the versions that I am most familiar with. I come from the aerospace industry (embedded flight software) in which we purposefully don't use the latest technologies for safety reasons, so most of the code I write is in C++0x and sometimes C++11. Nevertheless, the basic concepts of C++ and object oriented programming still generally apply to both past and future versions of the language.
-
-## Table of Contents
-
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
-
-- [C++ Syntax Cheat Sheet](#c-syntax-cheat-sheet)
-    - [Table of Contents](#table-of-contents)
-    - [1.0 C++ Classes](#10-c-classes)
-        - [1.1 Class Syntax](#11-class-syntax)
-            - [1.1.1 Class Declaration (`.h` file)](#111-class-declaration-h-file)
-            - [1.1.2 Class Definition (`.cpp` file)](#112-class-definition-cpp-file)
-            - [1.1.3 Class Utilization (Another `.cpp` file)](#113-class-utilization-another-cpp-file)
-            - [1.1.4 Getters and Setters](#114-getters-and-setters)
-        - [1.2 Inheritance](#12-inheritance)
-            - [1.2.1 `Rectangle` Declaration (`.h` file)](#121-rectangle-declaration-h-file)
-            - [1.2.2 `Rectangle` Definition (`.cpp` file)](#122-rectangle-definition-cpp-file)
-            - [1.2.3 `Rectangle` Utilization (Another `.cpp` file)](#123-rectangle-utilization-another-cpp-file)
-        - [1.3 Class Polymorphism](#13-class-polymorphism)
-            - [1.3.1 Motivation](#131-motivation)
-            - [1.3.2 Virtual Methods](#132-virtual-methods)
-        - [1.4 Special Methods (Constructor, Destructor, ...)](#14-special-methods)
-            - [1.4.1 Constructor and Destructor](#141-constructor-and-destructor)
-                - [1.4.1.1 Use of `explicit` in Constructors](#1411-use-of-explicit-in-constructors)
-                - [1.4.1.2 Member Initializer List](#1412-member-initializer-list)
-            - [1.4.2. `new` and `delete`](#142-new-and-delete)
-            - [1.4.3. Copy Constructor and Copy Assignment](#143-copy-constructor-and-copy-assignment)
-            - [1.4.4. Move Constructor and Move Assignment](#144-move-constructor-and-move-assignment)
-        - [1.5 Operator Overloading](#15-operator-overloading)
-        - [1.6 Templates](#16-templates)
-    - [2.0 General C++ Syntax](#20-general-c-syntax)
-        - [2.1 Namespaces](#21-namespaces)
-        - [2.2 References/Pointers](#22-references-and-pointers)
-        - [2.3 Keywords](#23-keywords)
-            - [2.3.1 General keywords](#231-general-keywords)
-            - [2.3.2 Storage class specifiers](#232-storage-class-specifiers)
-            - [2.3.3  `const` and `dynamic` Cast Conversion](#233-const-and-dynamic-cast-conversion)
-        - [2.4 Preprocessor Tokens](#24-preprocessor-tokens)
-        - [2.5 Strings ](#25-strings-stdstring)
-        - [2.6 Iterators](#26-iterators-stditerator)
-        - [2.7 Exceptions](#27-exceptions)
-        - [2.8 Lambdas](#28-lambdas)
-
-<!-- /TOC -->
 
 
 ## 1.0 C++ Classes
@@ -109,7 +61,7 @@ Here's a simple class representing a polygon, a shape with any number of sides.
 
 The class *declaration* typically goes in the header file, which has the extension `.h` (or, less commonly, `.hpp` to distinguish from C headers). The *declaration* gives the class name, any classes it may extend, declares the members and methods, and declares which members/methods are public, private, or protected. You can think of the declaration as sort of saying: "there will be a thing and here's how it will look like". The declaration is used to inform the compiler about the future essence and use of a particular symbol.
 
-```c++
+```cpp
 // File: polygon.h
 
 #include <string>
@@ -142,7 +94,7 @@ public:
 #### 1.1.2 Class Definition (`.cpp` file)
 The class *definition* typically goes in the `.cpp` file. The *definition* extends the declaration by providing an actual implementation of whatever it is that you're building. Continuing the example from the declaration, the definition can be thought of as saying: "Right, that thing I told you briefly about earlier? Here's how it actually functions". The definition thus provides the compileable implementation.
 
-```c++
+```cpp
 // File: polygon.cpp
 
 #include <string>	// <--- Required for std::string
@@ -1054,18 +1006,15 @@ is effectively dereferenced.
 * `#pragma`: Non-standard, can be used instead of header guards (`#ifndef HEADER_H` ...)
 
 ### 2.5 Strings (`std::string`)
-[Reference](http://en.cppreference.com/w/cpp/string/basic_string)
+
 
 ### 2.6 Iterators (`std::iterator<...>`)
-[Reference](http://en.cppreference.com/w/cpp/concept/Iterator)
+
 
 ### 2.7 Exceptions
-[Reference](http://en.cppreference.com/w/cpp/error/exception)
 
-### 2.8 Lambdas
-[Reference](https://en.cppreference.com/w/cpp/language/lambda)
 
- #### Create a program that reads two numbers and an operator and prints the result.
+#### Create a program that reads two numbers and an operator and prints the result.
 ```
 #include <iostream>
 
@@ -1111,17 +1060,14 @@ int main() {
 } 
 ```
 
-############ ############ ############ ############ ############
+
 #### Create a program that reads a text string with two numbers 
-and a operator and prints the result.
-This text should be interpreted by the program.
+and a operator and prints the result. This text should be interpreted by the program.
  
  Enter two numbers with an operator between> 10 + 15
  The answer to 10 + 15 is 25.
  Enter two numbers with an operator between> 10+15
  The answer to 10 + 15 is 25.
-
-
 
 ``` cpp
 #include <iostream>
@@ -1157,14 +1103,15 @@ int main() {
     return 0;
 }
 ```
-############ ############ ############ ############ ############
-Program that reads a text string with multiple numbers 
+
+#### Program that reads a text string with multiple numbers 
 and operators and prints the result. 
 This text should be interpreted by the program.
  Example (The text at the back of the > is read during execution):
  Enter numbers with an operator between> 2 + 3 * 5
  The answer to 2 + (3 * 5) is 17.
------------------------------------
+
+```
 #include <iostream>
 
 class calculator {
@@ -1253,9 +1200,9 @@ int main() {
     Calc.display();
     return 0;
 }
+```
 
-############ ############ ############ ############ ############
-Program that reads a text string with multiple numbers 
+#### Program that reads a text string with multiple numbers 
 	and operators and prints the result. 
 But now it should be possible, among other things, 
 	to use () around partial expressions and 
@@ -1268,7 +1215,8 @@ A natural extension is also to create the program so that the
  Enter two numbers with an operator between> 
     4 + 5 + (7 + 4) * 3 + 4 * 4 + 9/3 + 4 * 12 - 3/4
  The answer to 4 + 5 + (7 + 4) * 3 + 4 * 4 + 9/3 + 4 * 12 - 3/4 is 108.25.
-------------------------------------------------
+
+```
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -1464,9 +1412,9 @@ int main() {
         return 1;
     }
 }
+```
 
-############ ############ ############ ############ ############
-Create class Student that stores name, age and what degree they are on.
+#### Create class Student that stores name, age and what degree they are on.
 In the constructor the must be able to accept information to initialise 
 	the object, and the constructor must print this to the screen
 	: "Create a Student: <name>, <age>, <Degree>".
@@ -1474,8 +1422,8 @@ In the constructor the must be able to accept information to initialise
  The destructior must print the following message to the screen
  	: "Deleted: : <name>, <age>, <Degree>".
  Also create a method Print() and set and get method for all data.
-------------------------------------
 
+```
 #include <iostream>
 #include <vector>
 
@@ -1560,15 +1508,15 @@ int main() {
     stud2.printData();
     return 0;
 }
+```
 
-############ ############ ############ ############ ############ 
-Create table with:
+#### Create table with:
  Size three(3) that stores objects of the type Student.
  Size three(3) that stores objects of the type pointer to Student.
  Alter the name of the three students in their two tables to "Calvin", "Hobbes" and "Dad".
  Extra assignment:
     Create a linked list of student objects. Hint: Create a StudentLink class.
-------------------------------
+```
 #include <iostream>
 #include <vector>
 #include <string>
@@ -1654,7 +1602,7 @@ int main() {
     printVec(students);
     return 0;
 }
-
+```
 
 ############ ############ ############ ############ ############
 Create table with:
